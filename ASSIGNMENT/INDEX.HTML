@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gadget Galaxy Emporium - Your Tech Wonderland</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    <style>
+        .discount-timer {
+            font-family: 'Courier New', monospace;
+        }
+        .gadget-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .login-modal, .cart-modal {
+            backdrop-filter: blur(5px);
+        }
+    </style>
+</head>
+<body class="bg-gray-100" id="vanta-bg">
+    <!-- Navigation -->
+    <nav class="bg-indigo-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="flex items-center">
+                        <i data-feather="shopping-bag" class="w-6 h-6 mr-2"></i>
+                        <span class="text-xl font-bold">Gadget Galaxy</span>
+                    </a>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link px-3 py-2 rounded-md">Home</a>
+                    <a href="#products" class="nav-link px-3 py-2 rounded-md">Products</a>
+                    <a href="#deals" class="nav-link px-3 py-2 rounded-md">Hot Deals</a>
+                    <a href="#contact" class="nav-link px-3 py-2 rounded-md">Contact</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <button id="user-btn" class="p-2 rounded-full hover:bg-indigo-800">
+                        <i data-feather="user"></i>
+                    </button>
+                    <button id="wishlist-btn" class="p-2 rounded-full hover:bg-indigo-800 relative">
+                        <i data-feather="heart"></i>
+                        <span id="wishlist-count" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+                    </button>
+                    <button id="cart-btn" class="p-2 rounded-full hover:bg-indigo-800 relative">
+                        <i data-feather="shopping-cart"></i>
+                        <span id="cart-count" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+                    </button>
+                    <button id="mobile-menu-btn" class="md:hidden p-2 rounded-full hover:bg-indigo-800">
+                        <i data-feather="menu"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="hidden md:hidden px-2 pt-2 pb-4 space-y-2">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="#products" class="block px-3 py-2 rounded-md text-base font-medium">Products</a>
+                <a href="#deals" class="block px-3 py-2 rounded-md text-base font-medium">Hot Deals</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative py-20 bg-gradient-to-r from-indigo-900 to-purple-800 text-white">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">Tech Dreams <span class="text-yellow-300">Come True</span></h1>
+                <p class="text-lg md:text-xl mb-8">Discover the latest gadgets at unbeatable prices. Limited time offer - Flash sale ending soon!</p>
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold mb-2">Flash Sale Ends In:</h3>
+                    <div class="discount-timer text-2xl font-mono bg-black bg-opacity-30 p-4 rounded-lg inline-block">
+                        <span id="hours">05</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
+                    </div>
+                </div>
+                <button class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105">
+                    Shop Now
+                </button>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <img src="http://static.photos/technology/640x360/42" alt="Featured Gadget" class="rounded-lg shadow-2xl max-w-md w-full">
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Browse Categories</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                <!-- Category Cards -->
+                <div class="category-card bg-gray-50 rounded-lg p-6 text-center hover:shadow-lg transition duration-300 cursor-pointer">
+                    <div class="bg-indigo-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                        <i data-feather="smartphone" class="w-8 h-8 text-indigo-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-800">Smartphones</h3>
+                </div>
+                <div class="category-card bg-gray-50 rounded-lg p-6 text-center hover:shadow-lg transition duration-300 cursor-pointer">
+                    <div class="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                        <i data-feather="tablet" class="w-8 h-8 text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-800">Tablets</h3>
+                </div>
+                <div class="category-card bg-gray-50 rounded-lg p-6 text-center hover:shadow-lg transition duration-300 cursor-pointer">
+                    <div class="bg-green-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                        <i data-feather="monitor" class="w-8 h-8 text-green-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-800">Laptops</h3>
+                </div>
+                <div class="category-card bg-gray-50 rounded-lg p-6 text-center hover:shadow-lg transition duration-300 cursor-pointer">
+                    <div class="bg-red-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                        <i data-feather="headphones" class="w-8 h-8 text-red-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-800">Audio</h3>
+                </div>
+                <div class="category-card bg-gray-50 rounded-lg p-6 text-center hover:shadow-lg transition duration-300 cursor-pointer">
+                    <div class="bg-purple-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                        <i data-feather="watch" class="w-8 h-8 text-purple-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-800">Wearables</h3>
+                </div>
+                <div class="category-card bg-gray-50 rounded-lg p-6 text-center hover:shadow-lg transition duration-300 cursor-pointer">
+                    <div class="bg-yellow-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                        <i data-feather="cpu" class="w-8 h-8 text-yellow-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-800">Accessories</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800">Featured Gadgets</h2>
+                <div class="relative">
+                    <select class="appearance-none bg-white border border-gray-300 rounded-md py-2 pl-4 pr-10 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <option>Sort by: Popular</option>
+                        <option>Sort by: Newest</option>
+                        <option>Sort by: Price Low-High</option>
+                        <option>Sort by: Price High-Low</option>
+                    </select>
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                        <i data-feather="chevron-down" class="w-5 h-5 text-gray-400"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="products-grid">
+                <!-- Product cards will be dynamically inserted here -->
+            </div>
+            
+            <div class="mt-12 text-center">
+                <button class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-full transition duration-300">
+                    Load More
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hot Deals Section -->
+    <section id="deals" class="py-16 bg-indigo-900 text-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Flash Sale - Hot Deals</h2>
+            
+            <div class="relative">
+                <div class="flex space-x-6 overflow-x-auto pb-6 scrollbar-hide" id="deals-carousel">
+                    <!-- Deal items will be dynamically inserted here -->
+                </div>
+                
+                <button id="deal-prev" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white text-indigo-900 rounded-full p-2 shadow-md hover:bg-gray-100">
+                    <i data-feather="chevron-left" class="w-6 h-6"></i>
+                </button>
+                <button id="deal-next" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white text-indigo-900 rounded-full p-2 shadow-md hover:bg-gray-100">
+                    <i data-feather="chevron-right" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Subscribe Section -->
+    <section class="py-16 bg-gradient-to-r from-purple-600 to-indigo-600 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-4">Stay Updated With Our Latest Deals</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Subscribe to our newsletter and get 10% off your first purchase!</p>
+            
+            <div class="max-w-md mx-auto flex">
+                <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-l-lg focus:outline-none text-gray-800">
+                <button class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-r-lg transition duration-300">
+                    Subscribe
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Contact Us</h2>
+            
+            <div class="flex flex-col md:flex-row gap-12">
+                <div class="md:w-1/2">
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-sm">
+                        <h3 class="text-xl font-semibold mb-6">Get in Touch</h3>
+                        <form>
+                            <div class="mb-4">
+                                <label for="name" class="block text-gray-700 mb-2">Name</label>
+                                <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            </div>
+                            <div class="mb-4">
+                                <label for="email" class="block text-gray-700 mb-2">Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            </div>
+                            <div class="mb-4">
+                                <label for="message" class="block text-gray-700 mb-2">Message</label>
+                                <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+                            </div>
+                            <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-sm h-full">
+                        <h3 class="text-xl font-semibold mb-6">Our Contact Info</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                                    <i data-feather="map-pin" class="w-5 h-5 text-indigo-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">Address</h4>
+                                    <p class="text-gray-600">123 Tech Street, Silicon Valley, CA 94000</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                                    <i data-feather="mail" class="w-5 h-5 text-indigo-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">Email</h4>
+                                    <p class="text-gray-600">info@gadgetgalaxy.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                                    <i data-feather="phone" class="w-5 h-5 text-indigo-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">Phone</h4>
+                                    <p class="text-gray-600">+234 904 832 6574</p>
+                                    <p class="text-gray-600">+234 811 676 0105</p>
+                                    <p class="text-gray-600">+234 803 348 1848</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                                    <i data-feather="clock" class="w-5 h-5 text-indigo-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">Working Hours</h4>
+                                    <p class="text-gray-600">Monday - Friday: 9AM - 6PM</p>
+                                    <p class="text-gray-600">Saturday: 10AM - 4PM</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="font-medium text-gray-800 mb-4">Follow Us</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="bg-gray-200 p-3 rounded-full hover:bg-indigo-100 transition duration-300">
+                                    <i data-feather="facebook" class="w-5 h-5 text-indigo-600"></i>
+                                </a>
+                                <a href="#" class="bg-gray-200 p-3 rounded-full hover:bg-indigo-100 transition duration-300">
+                                    <i data-feather="twitter" class="w-5 h-5 text-indigo-600"></i>
+                                </a>
+                                <a href="#" class="bg-gray-200 p-3 rounded-full hover:bg-indigo-100 transition duration-300">
+                                    <i data-feather="instagram" class="w-5 h-5 text-indigo-600"></i>
+                                </a>
+                                <a href="#" class="bg-gray-200 p-3 rounded-full hover:bg-indigo-100 transition duration-300">
+                                    <i data-feather="linkedin" class="w-5 h-5 text-indigo-600"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i data-feather="shopping-bag" class="w-6 h-6 mr-2"></i>
+                        <span>Gadget Galaxy</span>
+                    </h3>
+                    <p class="text-gray-400 mb-4">Your one-stop shop for all tech gadgets and accessories at unbeatable prices.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i data-feather="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i data-feather="twitter" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i data-feather="instagram" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
+                        <li><a href="#products" class="text-gray-400 hover:text-white transition duration-300">Products</a></li>
+                        <li><a href="#deals" class="text-gray-400 hover:text-white transition duration-300">Hot Deals</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Categories</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Smartphones</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Laptops</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Audio</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Wearables</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Subscribe to our newsletter for the latest updates and offers.</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-lg text-gray-800 flex-grow focus:outline-none">
+                        <button class="bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-r-lg transition duration-300">
+                            <i data-feather="send" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2023 Gadget Galaxy Emporium. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">Shipping Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="fixed inset-0 z-50 hidden login-modal">
+        <div class="flex items-center justify-center min-h-screen">
+            <div class="fixed inset-0 bg-black bg-opacity-50"></div>
+            <div class="bg-white rounded-lg shadow-xl p-8 max-w-md w-full relative z-10">
+                <button id="close-login" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+                    <i data-feather="x" class="w-6 h-6"></i>
+                </button>
+                
+                <h2 class="text-2xl font-bold text-center mb-8">Welcome Back</h2>
+                
+                <form id="login-form">
+                    <div class="mb-4">
+                        <label for="login-email" class="block text-gray-700 mb-2">Email</label>
+                        <input type="email" id="login-email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                    <div class="mb-6">
+                        <label for="login-password" class="block text-gray-700 mb-2">Password</label>
+                        <input type="password" id="login-password" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                    <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 mb-4">
+                        Login
+                    </button>
+                    <div class="text-center text-sm text-gray-600">
+                        Don't have an account? <button id="show-register" class="text-indigo-600 hover:underline">Sign up</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="register-modal" class="fixed inset-0 z-50 hidden login-modal">
+        <div class="flex items-center justify-center min-h-screen">
+            <div class="fixed inset-0 bg-black bg-opacity-50"></div>
+            <div class="bg-white rounded-lg shadow-xl p-8 max-w-md w-full relative z-10">
+                <button id="close-register" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+                    <i data-feather="x" class="w-6 h-6"></i>
+                </button>
+                
+                <h2 class="text-2xl font-bold text-center mb-8">Create Account</h2>
+                
+                <form id="register-form">
+                    <div class="mb-4">
+                        <label for="register-name" class="block text-gray-700 mb-2">Full Name</label>
+                        <input type="text" id="register-name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                    <div class="mb-4">
+                        <label for="register-email" class="block text-gray-700 mb-2">Email</label>
+                        <input type="email" id="register-email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                    <div class="mb-6">
+                        <label for="register-password" class="block text-gray-700 mb-2">Password</label>
+                        <input type="password" id="register-password" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                    <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 mb-4">
+                        Register
+                    </button>
+                    <div class="text-center text-sm text-gray-600">
+                        Already have an account? <button id="show-login" class="text-indigo-600 hover:underline">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="fixed inset-0 z-50 hidden cart-modal">
+        <div class="flex items-center justify-end min-h-screen">
+            <div class="fixed inset-0 bg-black bg-opacity-50" id="cart-backdrop"></div>
+            <div class="bg-white rounded-l-lg shadow-xl p-6 w-full max-w-md h-screen relative z-10 overflow-y-auto">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-xl font-bold">Your Cart (<span id="cart-modal-count">0</span>)</h2>
+                    <button id="close-cart" class="text-gray-500 hover:text-gray-700">
+                        <i data-feather="x" class="w-6 h-6"></i>
+                    </button>
+                </div>
+                
+                <div id="cart-items" class="space-y-4 mb-6">
+                    <!-- Cart items will be dynamically inserted here -->
+                    <div class="text-center py-8">
+                        <i data-feather="shopping-cart" class="w-12 h-12 mx-auto text-gray-300 mb-4"></i>
+                        <p class="text-gray-500">Your cart is empty</p>
+                    </div>
+                </div>
+                
+                <div class="border-t border-gray-200 pt-4">
+                    <div class="flex justify-between mb-2">
+                        <span class="text-gray-600">Subtotal</span>
+                        <span class="font-medium" id="cart-subtotal">$0.00</span>
+                    </div>
+                    <div class="flex justify-between mb-4">
+                        <span class="text-gray-600">Shipping</span>
+                        <span class="font-medium">Calculated at checkout</span>
+                    </div>
+                    <div class="flex justify-between text-lg font-bold">
+                        <span>Total</span>
+                        <span id="cart-total">$0.00</span>
+                    </div>
+                    
+                    <button class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 mt-6">
+                        Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wishlist Modal -->
+    <div id="wishlist-modal" class="fixed inset-0 z-50 hidden cart-modal">
+        <div class="flex items-center justify-end min-h-screen">
+            <div class="fixed inset-0 bg-black bg-opacity-50" id="wishlist-backdrop"></div>
+            <div class="bg-white rounded-l-lg shadow-xl p-6 w-full max-w-md h-screen relative z-10 overflow-y-auto">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-xl font-bold">Your Wishlist (<span id="wishlist-modal-count">0</span>)</h2>
+                    <button id="close-wishlist" class="text-gray-500 hover:text-gray-700">
+                        <i data-feather="x" class="w-6 h-6"></i>
+                    </button>
+                </div>
+                
+                <div id="wishlist-items" class="space-y-4">
+                    <!-- Wishlist items will be dynamically inserted here -->
+                    <div class="text-center py-8">
+                        <i data-feather="heart" class="w-12 h-12 mx-auto text-gray-300 mb-4"></i>
+                        <p class="text-gray-500">Your wishlist is empty</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize Vanta.js background
+        VANTA.NET({
+            el: "#vanta-bg",
+            color: 0x4f46e5,
+            backgroundColor: 0xf3f4f6,
+            points: 10.00,
+            maxDistance: 22.00,
+            spacing: 18.00
+        });
+
+        // Sample product data
+        const products = [
+            { id: 1, name: "iPhone 15 Pro Max", price: 1299, category: "Smartphones", image: "http://static.photos/technology/320x240/1", rating: 4.8, discount: 10 },
+            { id: 2, name: "Samsung Galaxy S23 Ultra", price: 1199, category: "Smartphones", image: "http://static.photos/technology/320x240/2", rating: 4.7, discount: 5 },
+            { id: 3, name: "MacBook Pro 16\" M2", price: 2499, category: "Laptops", image: "http://static.photos/technology/320x240/3", rating: 4.9, discount: 0 },
+            { id: 4, name: "Dell XPS 15", price: 1799, category: "Laptops", image: "http://static.photos/technology/320x240/4", rating: 4.6, discount: 15 },
+            { id: 5, name: "iPad Pro 12.9\"", price: 1099, category: "Tablets", image: "http://static.photos/technology/320x240/5", rating: 4.5, discount: 8 },
+            { id: 6, name: "Samsung Galaxy Tab S8", price: 699, category: "Tablets", image: "http://static.photos/technology/320x240/6", rating: 4.4, discount: 12 },
+            { id: 7, name: "Sony WH-1000XM5", price: 399, category: "Audio", image: "http://static.photos/technology/320x240/7", rating: 4.8, discount: 10 },
+            { id: 8, name: "AirPods Pro 2", price: 249, category: "Audio", image: "http://static.photos/technology/320x240/8", rating: 4.7, discount: 5 },
+            { id: 9, name: "Apple Watch Ultra", price: 799, category: "Wearables", image: "http://static.photos/technology/320x240/9", rating: 4.6, discount: 0 },
+            { id: 10, name: "Samsung Galaxy Watch 5 Pro", price: 449, category: "Wearables", image: "http://static.photos/technology/320x240/10", rating: 4.5, discount: 20 },
+            { id: 11, name: "DJI Mavic 3 Pro", price: 2199, category: "Drones", image: "http://static.photos/technology/320x240/11", rating: 4.9, discount: 0 },
+            { id: 12, name: "Nikon Z9", price: 5499, category: "Cameras", image: "http://static.photos/technology/320x240/12", rating: 4.8, discount: 5 },
+            { id: 13, name: "PlayStation 5", price: 499, category: "Gaming", image: "http://static.photos/technology/320x240/13", rating: 4.7, discount: 0 },
+            { id: 14, name: "Xbox Series X", price: 499, category: "Gaming", image: "http://static.photos/technology/320x240/14", rating: 4.6, discount: 0 },
+            { id: 15, name: "LG OLED C2 65\"", price: 1799, category: "TVs", image: "http://static.photos/technology/320x240/15", rating: 4.9, discount: 15 },
+            { id: 16, name: "Samsung QN90B 75\"", price: 2199, category: "TVs", image: "http://static.photos/technology/320x240/16", rating: 4.7, discount: 10 },
+            { id: 17, name: "Logitech MX Master 3S", price: 99, category: "Accessories", image: "http://static.photos/technology/320x240/17", rating: 4.8, discount: 0 },
+            { id: 18, name: "Samsung T7 Shield 1TB", price: 109, category: "Storage", image: "http://static.photos/technology/320x240/18", rating: 4.5, discount: 5 },
+            { id: 19, name: "Anker 737 Power Bank", price: 129, category: "Accessories", image: "http://static.photos/technology/320x240/19", rating: 4.6, discount: 10 },
+            { id: 20, name: "Amazon Kindle Paperwhite", price: 139, category: "E-readers", image: "http://static.photos/technology/320x240/20", rating: 4.7, discount: 0 },
+        ];
+
+        // Generate more products to reach 300+
+        for (let i = 21; i <= 300; i++) {
+            const categories = ["Smartphones", "Laptops", "Tablets", "Audio", "Wearables", "Drones", "Cameras", "Gaming", "TVs", "Accessories", "Storage", "E-readers"];
+            const randomCategory = categories[Math.floor(Math.random() * categories.length)];
+            const randomPrice = Math.floor(Math.random() * 5000) + 50;
+            const randomRating = (Math.random() * 1 + 4).toFixed(1);
+            const randomDiscount = Math.floor(Math.random() * 25);
+            
+            products.push({
+                id: i,
+                name: `Tech Gadget ${i}`,
+                price: randomPrice,
+                category: randomCategory,
+                image: `http://static.photos/technology/320x240/${i}`,
+                rating: parseFloat(randomRating),
+                discount: randomDiscount
+            });
+        }
+
+        // Initialize cart and wishlist
+        let cart = [];
+        let wishlist = [];
+
+        // DOM elements
+        const productsGrid = document.getElementById('products-grid');
+        const dealsCarousel = document.getElementById('deals-carousel');
+        const cartCount = document.getElementById('cart-count');
+        const wishlistCount = document.getElementById('wishlist-count');
+        const cartItems = document.getElementById('cart-items');
+        const wishlistItems = document.getElementById('wishlist-items');
+        const cartSubtotal = document.getElementById('cart-subtotal');
+        const cartTotal = document.getElementById('cart-total');
+        const cartModalCount = document.getElementById('cart-modal-count');
+        const wishlistModalCount = document.getElementById('wishlist-modal-count');
+        const loginModal = document.getElementById('login-modal');
+        const registerModal = document.getElementById('register-modal');
+        const cartModal = document.getElementById('cart-modal');
+        const wishlistModal = document.getElementById('wishlist-modal');
+        const closeLogin = document.getElementById('close-login');
+        const closeRegister = document.getElementById('close-register');
+        const closeCart = document.getElementById('close-cart');
+        const closeWishlist = document.getElementById('close-wishlist');
+        const showRegister = document.getElementById('show-register');
+        const showLogin = document.getElementById('show-login');
+        const userBtn = document.getElementById('user-btn');
+        const cartBtn = document.getElementById('cart-btn');
+        const wishlistBtn = document.getElementById('wishlist-btn');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const dealPrev = document.getElementById('deal-prev');
+        const dealNext = document.getElementById('deal-next');
+        const hoursEl = document.getElementById('hours');
+        const minutesEl = document.getElementById('minutes');
+        const secondsEl = document.getElementById('seconds');
+        const cartBackdrop = document.getElementById('cart-backdrop');
+        const wishlistBackdrop = document.getElementById('wishlist-backdrop');
+
+        // Render products
+        function renderProducts() {
+            productsGrid.innerHTML = '';
+            products.slice(0, 8).forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'gadget-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300';
+                productCard.innerHTML = `
+                    <div class="relative">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover">
+                        ${product.discount > 0 ? `<div class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">${product.discount}% OFF</div>` : ''}
+                        <button class="wishlist-btn absolute top-2 left-2 bg-white p-2 rounded-full shadow-md hover:bg-gray-100" data-id="${product.id}">
+                            <i data-feather="heart" class="w-4 h-4 text-gray-600"></i>
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-gray-800">${product.name}</h3>
+                            <div class="flex items-center">
+                                <i data-feather="star" class="w-4 h-4 text-yellow-500 mr-1"></i>
+                                <span class="text-sm">${product.rating}</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                ${product.discount > 0 ? `<span class="text-gray-500 line-through text-sm">$${(product.price * 1.1).toFixed(2)}</span>` : ''}
+                                <span class="text-lg font-bold text-indigo-600">$${product.price.toFixed(2)}</span>
+                            </div>
+                            <button class="add-to-cart bg-indigo-600 hover:bg-indigo-700 text-white p-2 rounded-full transition duration-300" data-id="${product.id}">
+                                <i data-feather="shopping-cart" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                productsGrid.appendChild(productCard);
+            });
+            feather.replace();
+        }
+
+        // Render deals
+        function renderDeals() {
+            dealsCarousel.innerHTML = '';
+            const deals = [...products].filter(p => p.discount > 0).sort((a, b) => b.discount - a.discount).slice(0, 10);
+            
+            deals.forEach(deal => {
+                const dealItem = document.createElement('div');
+                dealItem.className = 'flex-shrink-0 w-64 bg-white rounded-lg shadow-md overflow-hidden';
+                dealItem.innerHTML = `
+                    <div class="relative">
+                        <img src="${deal.image}" alt="${deal.name}" class="w-full h-40 object-cover">
+                        <div class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">${deal.discount}% OFF</div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-gray-800 mb-1">${deal.name}</h3>
+                        <div class="flex items-center mb-2">
+                            <i data-feather="star" class="w-4 h-4 text-yellow-500 mr-1"></i>
+                            <span class="text-sm">${deal.rating}</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-gray-500 line-through text-sm">$${(deal.price * (1 + deal.discount/100)).toFixed(2)}</span>
+                                <span class="text-lg font-bold text-indigo-600">$${deal.price.toFixed(2)}</span>
+                            </div>
+                            <button class="add-to-cart bg-indigo-600 hover:bg-indigo-700 text-white p-2 rounded-full transition duration-300" data-id="${deal.id}">
+                                <i data-feather="shopping-cart" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                dealsCarousel.appendChild(dealItem);
+            });
+            feather.replace();
+        }
+
+        // Update cart count
+        function updateCartCount() {
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = count;
+            cartModalCount.textContent = count;
+        }
+
+        // Update wishlist count
+        function updateWishlistCount() {
+            wishlistCount.textContent = wishlist.length;
+            wishlistModalCount.textContent = wishlist.length;
+        }
+
+        // Update cart display
+        function updateCartDisplay() {
+            cartItems.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <div class="text-center py-8">
+                        <i data-feather="shopping-cart" class="w-12 h-12 mx-auto text-gray-300 mb-4"></i>
+                        <p class="text-gray-500">Your cart is empty</p>
+                    </div>
+                `;
+                cartSubtotal.textContent = '$0.00';
+                cartTotal.textContent = '$0.00';
+            } else {
+                let subtotal = 0;
+                
+                cart.forEach(item => {
+                    const product = products.find(p => p.id === item.id);
+                    subtotal += product.price * item.quantity;
+                    
+                    const cartItem = document.createElement('div');
+                    cartItem.className = 'flex items-center space-x-4 border-b border-gray-200 pb-4';
+                    cartItem.innerHTML = `
+                        <img src="${product.image}" alt="${product.name}" class="w-16 h-16 object-cover rounded">
+                        <div class="flex-grow">
+                            <h4 class="font-medium text-gray-800">${product.name}</h4>
+                            <div class="flex items-center justify-between mt-1">
+                                <span class="text-sm text-gray-600">$${product.price.toFixed(2)}</span>
+                                <div class="flex items-center space-x-2">
+                                    <button class="quantity-btn text-gray-500" data-id="${product.id}" data-action="decrease">
+                                        <i data-feather="minus" class="w-4 h-4"></i>
+                                    </button>
+                                    <span class="quantity text-sm">${item.quantity}</span>
+                                    <button class="quantity-btn text-gray-500" data-id="${product.id}" data-action="increase">
+                                        <i data-feather="plus" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="remove-from-cart text-red-500" data-id="${product.id}">
+                            <i data-feather="trash-2" class="w-5 h-5"></i>
+                        </button>
+                    `;
+                    cartItems.appendChild(cartItem);
+                });
+                
+                cartSubtotal.textContent = `$${subtotal.toFixed(2)}`;
+                cartTotal.textContent = `$${subtotal.toFixed(2)}`;
+            }
+            
+            feather.replace();
+        }
+
+        // Update wishlist display
+        function updateWishlistDisplay() {
+            wishlistItems.innerHTML = '';
+            
+            if (wishlist.length === 0) {
+                wishlistItems.innerHTML = `
+                    <div class="text-center py-8">
+                        <i data-feather="heart" class="w-12 h-12 mx-auto text-gray-300 mb-4"></i>
+                        <p class="text-gray-500">Your wishlist is empty</p>
+                    </div>
+                `;
+            } else {
+                wishlist.forEach(id => {
+                    const product = products.find(p => p.id === id);
+                    
+                    const wishlistItem = document.createElement('div');
+                    wishlistItem.className = 'flex items-center space-x-4 border-b border-gray-200 pb-4';
+                    wishlistItem.innerHTML = `
+                        <img src="${product.image}" alt="${product.name}" class="w-16 h-16 object-cover rounded">
+                        <div class="flex-grow">
+                            <h4 class="font-medium text-gray-800">${product.name}</h4>
+                            <div class="flex items-center justify-between mt-1">
+                                <span class="text-sm text-indigo-600 font-bold">$${product.price.toFixed(2)}</span>
+                                <button class="move-to-cart bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1 rounded text-sm transition duration-300" data-id="${product.id}">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                        <button class="remove-from-wishlist text-gray-500 hover:text-red-500" data-id="${product.id}">
+                            <i data-feather="x" class="w-5 h-5"></i>
+                        </button>
+                    `;
+                    wishlistItems.appendChild(wishlistItem);
+                });
+            }
+            
+            feather.replace();
+        }
+
+        // Add to cart
+        function addToCart(id) {
+            const existingItem = cart.find(item => item.id === id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ id, quantity: 1 });
+            }
+            
+            updateCartCount();
+            updateCartDisplay();
+            
+            // Show notification
+            const product = products.find(p => p.id === id);
+            showNotification(`${product.name} added to cart`);
+        }
+
+        // Remove from cart
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCartCount();
+            updateCartDisplay();
+            
+            // Show notification
+            const product = products.find(p => p.id === id);
+            showNotification(`${product.name} removed from cart`);
+        }
+
+        // Update quantity
+        function updateQuantity(id, action) {
+            const item = cart.find(item => item.id === id);
+            
+            if (item) {
+                if (action === 'increase') {
+                    item.quantity += 1;
+                } else if (action === 'decrease' && item.quantity > 1) {
+                    item.quantity -= 1;
+                }
+                
+                updateCartDisplay();
+            }
+        }
+
+        // Add to wishlist
+        function addToWishlist(id) {
+            if (!wishlist.includes(id)) {
+                wishlist.push(id);
+                updateWishlistCount();
+                updateWishlistDisplay();
+                
+                // Show notification
+                const product = products.find(p => p.id === id);
+                showNotification(`${product.name} added to wishlist`);
+            }
+        }
+
+        // Remove from wishlist
+        function removeFromWishlist(id) {
+            wishlist = wishlist.filter(itemId => itemId !== id);
+            updateWishlistCount();
+            updateWishlistDisplay();
+            
+            // Show notification
+            const product = products.find(p => p.id === id);
+            showNotification(`${product.name} removed from wishlist`);
+        }
+
+        // Move from wishlist to cart
+        function moveToCart(id) {
+            removeFromWishlist(id);
+            addToCart(id);
+        }
+
+        // Show notification
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-4 right-4 bg-indigo-600 text-white px-6 py-3 rounded-lg shadow-lg z-50 transform translate-x-full opacity-0 transition-all duration-300';
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.classList.remove('translate-x-full', 'opacity-0');
+                notification.classList.add('translate-x-0', 'opacity-100');
+            }, 10);
+            
+            setTimeout(() => {
+                notification.classList.remove('translate-x-0', 'opacity-100');
+                notification.classList.add('translate-x-full', 'opacity-0');
+                
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 3000);
+        }
+
+        // Countdown timer
+        function startCountdown() {
+            let hours = 5;
+            let minutes = 0;
+            let seconds = 0;
+            
+            const interval = setInterval(() => {
+                if (seconds === 0) {
+                    if (minutes === 0) {
+                        if (hours === 0) {
+                            clearInterval(interval);
+                            return;
+                        }
+                        hours--;
+                        minutes = 59;
+                    } else {
+                        minutes--;
+                    }
+                    seconds = 59;
+                } else {
+                    seconds--;
+                }
+                
+                hoursEl.textContent = hours.toString().padStart(2, '0');
+                minutesEl.textContent = minutes.toString().padStart(2, '0');
+                secondsEl.textContent = seconds.toString().padStart(2, '0');
+            }, 1000);
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+            renderDeals();
+            updateCartCount();
+            updateWishlistCount();
+            updateCartDisplay();
+            updateWishlistDisplay();
+            startCountdown();
+            feather.replace();
+        });
+
+        // Product grid event delegation
+        productsGrid.addEventListener('click', (e) => {
+            if (e.target.closest('.add-to-cart')) {
+                const id = parseInt(e.target.closest('.add-to-cart').dataset.id);
+                addToCart(id);
+            }
+            
+            if (e.target.closest('.wishlist-btn')) {
+                const id = parseInt(e.target.closest('.wishlist-btn').dataset.id);
+                addToWishlist(id);
+            }
+        });
+
+        // Deals carousel event delegation
+        dealsCarousel.addEventListener('click', (e) => {
+            if (e.target.closest('.add-to-cart')) {
+                const id = parseInt(e.target.closest('.add-to-cart').dataset.id);
+                addToCart(id);
+            }
+        });
+
+        // Cart modal event delegation
+        cartItems.addEventListener('click', (e) => {
+            if (e.target.closest('.remove-from-cart')) {
+                const id = parseInt(e.target.closest('.remove-from-cart').dataset.id);
+                removeFromCart(id);
+            }
+            
+            if (e.target.closest('.quantity-btn')) {
+                const btn = e.target.closest('.quantity-btn');
+                const id = parseInt(btn.dataset.id);
+                const action = btn.dataset.action;
+                updateQuantity(id, action);
+            }
+        });
+
+        // Wishlist modal event delegation
+        wishlistItems.addEventListener('click', (e) => {
+            if (e.target.closest('.remove-from-wishlist')) {
+                const id = parseInt(e.target.closest('.remove-from-wishlist').dataset.id);
+                removeFromWishlist(id);
+            }
+            
+            if (e.target.closest('.move-to-cart')) {
+                const id = parseInt(e.target.closest('.move-to-cart').dataset.id);
+                moveToCart(id);
+            }
+        });
+
+        // Modal controls
+        userBtn.addEventListener('click', () => {
+            loginModal.classList.remove('hidden');
+        });
+
+        cartBtn.addEventListener('click', () => {
+            cartModal.classList.remove('hidden');
+        });
+
+        wishlistBtn.addEventListener('click', () => {
+            wishlistModal.classList.remove('hidden');
+        });
+
+        closeLogin.addEventListener('click', () => {
+            loginModal.classList.add('hidden');
+        });
+
+        closeRegister.addEventListener('click', () => {
+            registerModal.classList.add('hidden');
+        });
+
+        closeCart.addEventListener('click', () => {
+            cartModal.classList.add('hidden');
+        });
+
+        closeWishlist.addEventListener('click', () => {
+            wishlistModal.classList.add('hidden');
+        });
+
+        showRegister.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginModal.classList.add('hidden');
+            registerModal.classList.remove('hidden');
+        });
+
+        showLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            registerModal.classList.add('hidden');
+            loginModal.classList.remove('hidden');
+        });
+
+        cartBackdrop.addEventListener('click', () => {
+            cartModal.classList.add('hidden');
+        });
+
+        wishlistBackdrop.addEventListener('click', () => {
+            wishlistModal.classList.add('hidden');
+        });
+
+        // Mobile menu toggle
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Deal carousel navigation
+        let dealScrollPosition = 0;
+        const dealItemWidth = 256; // 64rem * 4px = 256px
+        
+        dealPrev.addEventListener('click', () => {
+            dealScrollPosition = Math.max(dealScrollPosition - dealItemWidth, 0);
+            dealsCarousel.scrollTo({ left: dealScrollPosition, behavior: 'smooth' });
+        });
+        
+        dealNext.addEventListener('click', () => {
+            dealScrollPosition = Math.min(dealScrollPosition + dealItemWidth, dealsCarousel.scrollWidth - dealsCarousel.clientWidth);
+            dealsCarousel.scrollTo({ left: dealScrollPosition, behavior: 'smooth' });
+        });
+
+        // Form submissions
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            showNotification('Login successful!');
+            loginModal.classList.add('hidden');
+        });
+
+        document.getElementById('register-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            showNotification('Registration successful! Please login.');
+            registerModal.classList.add('hidden');
+            loginModal.classList.remove('hidden');
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+                
+                // Close mobile menu if open
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+    <script>feather.replace();</script>
+</body>
+</html>

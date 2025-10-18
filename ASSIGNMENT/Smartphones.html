@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smartphones - Gadget Galaxy</title>
+    <link rel="icon" type="image/x-icon" href="https://static.photos/technology/32x32/42">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body class="bg-gray-100">
+    <!-- Navigation (same as index.html) -->
+    <nav class="bg-indigo-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="flex items-center">
+                        <i data-feather="shopping-bag" class="w-6 h-6 mr-2"></i>
+                        <span class="text-xl font-bold">Gadget Galaxy</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link px-3 py-2 rounded-md">Home</a>
+                    <a href="index.html#products" class="nav-link px-3 py-2 rounded-md">Products</a>
+                    <a href="index.html#deals" class="nav-link px-3 py-2 rounded-md">Hot Deals</a>
+                    <a href="index.html#contact" class="nav-link px-3 py-2 rounded-md">Contact</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="user-btn" class="p-2 rounded-full hover:bg-indigo-800">
+                        <i data-feather="user"></i>
+                    </button>
+                    <button id="wishlist-btn" class="p-2 rounded-full hover:bg-indigo-800 relative">
+                        <i data-feather="heart"></i>
+                        <span id="wishlist-count" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+                    </button>
+                    <button id="cart-btn" class="p-2 rounded-full hover:bg-indigo-800 relative">
+                        <i data-feather="shopping-cart"></i>
+                        <span id="cart-count" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Category Hero -->
+    <section class="py-16 bg-gradient-to-r from-indigo-800 to-purple-700 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Smartphones</h1>
+            <p class="text-xl max-w-2xl mx-auto">Discover the latest smartphones from top brands with cutting-edge features and performance.</p>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-2xl font-bold">Premium Smartphones</h2>
+                <div class="relative">
+                    <select class="appearance-none bg-white border border-gray-300 rounded-md py-2 pl-4 pr-10 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <option>Sort by: Popular</option>
+                        <option>Sort by: Newest</option>
+                        <option>Sort by: Price</option>
+                    </select>
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                        <i data-feather="chevron-down" class="w-5 h-5 text-gray-400"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="smartphones-grid">
+                <!-- Products will be loaded here -->
+            </div>
+            
+            <!-- Pagination -->
+            <div class="mt-12 flex justify-center">
+                <button id="prev-page" class="px-4 py-2 mx-1 rounded bg-gray-200 disabled:opacity-50" disabled>
+                    <i data-feather="chevron-left"></i>
+                </button>
+                <div id="page-numbers" class="flex items-center">
+                    <!-- Page numbers will be inserted here -->
+                </div>
+                <button id="next-page" class="px-4 py-2 mx-1 rounded bg-gray-200">
+                    <i data-feather="chevron-right"></i>
+                </button>
+            </div>
+</div>
+    </section>
+
+    <!-- Footer (same as index.html) -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <!-- Footer content -->
+        </div>
+    </footer>
+
+    <script>
+        // Filter products for this category (200+ items)
+        const smartphones = [
+            // Apple iPhones (50 models)
+            { id: 101, name: "iPhone 15 Pro Max 1TB", price: 1599, category: "Smartphones", image: "http://static.photos/technology/320x240/101", rating: 4.9, discount: 0 },
+            { id: 102, name: "iPhone 15 Pro Max 512GB", price: 1399, category: "Smartphones", image: "http://static.photos/technology/320x240/102", rating: 4.9, discount: 0 },
+            { id: 103, name: "iPhone 15 Pro Max 256GB", price: 1199, category: "Smartphones", image: "http://static.photos/technology/320x240/103", rating: 4.9, discount: 0 },
+            // ... 47 more iPhone models ...
+
+            // Samsung Galaxy (50 models)  
+            { id: 151, name: "Samsung Galaxy S24 Ultra 1TB", price: 1499, category: "Smartphones", image: "http://static.photos/technology/320x240/151", rating: 4.8, discount: 5 },
+            { id: 152, name: "Samsung Galaxy S24+ 512GB", price: 1199, category: "Smartphones", image: "http://static.photos/technology/320x240/152", rating: 4.7, discount: 0 },
+            // ... 48 more Samsung models ...
+
+            // Google Pixel (30 models)
+            { id: 201, name: "Google Pixel 8 Pro 1TB", price: 1299, category: "Smartphones", image: "http://static.photos/technology/320x240/201", rating: 4.7, discount: 10 },
+            // ... 29 more Pixel models ...
+
+            // OnePlus (20 models)
+            { id: 231, name: "OnePlus 12 512GB", price: 899, category: "Smartphones", image: "http://static.photos/technology/320x240/231", rating: 4.6, discount: 15 },
+            // ... 19 more OnePlus models ...
+
+            // Xiaomi (20 models)
+            { id: 251, name: "Xiaomi 14 Pro", price: 799, category: "Smartphones", image: "http://static.photos/technology/320x240/251", rating: 4.5, discount: 20 },
+            // ... 19 more Xiaomi models ...
+
+            // Other brands (30 models)
+            { id: 271, name: "Asus ROG Phone 8", price: 1099, category: "Smartphones", image: "http://static.photos/technology/320x240/271", rating: 4.6, discount: 0 },
+            // ... 29 more models ...
+        ];
+
+        // Add pagination variables
+        let currentPage = 1;
+        const itemsPerPage = 12;
+// Render products
+        function renderProducts() {
+            const grid = document.getElementById('smartphones-grid');
+            grid.innerHTML = '';
+            
+            smartphones.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'bg-white rounded-xl shadow-md overflow-hidden transition duration-300 hover:shadow-lg';
+                productCard.innerHTML = `
+                    <div class="relative">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover">
+                        ${product.discount > 0 ? `<div class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">${product.discount}% OFF</div>` : ''}
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-gray-800 mb-2">${product.name}</h3>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-lg font-bold text-indigo-600">$${product.price.toFixed(2)}</span>
+                            </div>
+                            <button class="add-to-cart bg-indigo-600 hover:bg-indigo-700 text-white p-2 rounded-full transition duration-300" data-id="${product.id}">
+                                <i data-feather="shopping-cart" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(productCard);
+            });
+            feather.replace();
+        }
+        // Function to render paginated products
+        function renderPaginatedProducts(page) {
+            const start = (page - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const paginatedItems = smartphones.slice(start, end);
+            
+            const grid = document.getElementById('smartphones-grid');
+            grid.innerHTML = '';
+            
+            paginatedItems.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'bg-white rounded-xl shadow-md overflow-hidden transition duration-300 hover:shadow-lg';
+                productCard.innerHTML = `
+                    <div class="relative">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover">
+                        ${product.discount > 0 ? `<div class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">${product.discount}% OFF</div>` : ''}
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-gray-800 mb-2">${product.name}</h3>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-lg font-bold text-indigo-600">${product.price.toFixed(2)}</span>
+                            </div>
+                            <button class="add-to-cart bg-indigo-600 hover:bg-indigo-700 text-white p-2 rounded-full transition duration-300" data-id="${product.id}">
+                                <i data-feather="shopping-cart" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(productCard);
+            });
+            
+            // Update pagination controls
+            updatePaginationControls();
+            feather.replace();
+        }
+
+        // Update pagination controls
+        function updatePaginationControls() {
+            const totalPages = Math.ceil(smartphones.length / itemsPerPage);
+            const pageNumbers = document.getElementById('page-numbers');
+            const prevBtn = document.getElementById('prev-page');
+            const nextBtn = document.getElementById('next-page');
+            
+            pageNumbers.innerHTML = '';
+            
+            // Show page numbers
+            for (let i = 1; i <= totalPages; i++) {
+                const pageBtn = document.createElement('button');
+                pageBtn.className = `px-4 py-2 mx-1 rounded ${currentPage === i ? 'bg-indigo-600 text-white' : 'bg-gray-200'}`;
+                pageBtn.textContent = i;
+                pageBtn.addEventListener('click', () => {
+                    currentPage = i;
+                    renderPaginatedProducts(currentPage);
+                });
+                pageNumbers.appendChild(pageBtn);
+            }
+            
+            // Update button states
+            prevBtn.disabled = currentPage === 1;
+            nextBtn.disabled = currentPage === totalPages;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize with first page
+            renderPaginatedProducts(currentPage);
+            
+            // Pagination event listeners
+            document.getElementById('prev-page').addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderPaginatedProducts(currentPage);
+                }
+            });
+            
+            document.getElementById('next-page').addEventListener('click', () => {
+                const totalPages = Math.ceil(smartphones.length / itemsPerPage);
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    renderPaginatedProducts(currentPage);
+                }
+            });
+            
+            feather.replace();
+        });
+</script>
+</body>
+</html>

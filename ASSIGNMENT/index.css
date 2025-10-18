@@ -1,0 +1,26 @@
+css boby{
+    font-family: Arial,sans-serif;
+    text-align: center;
+    background-color: #f9f9f9;
+    margin: 50px;
+}
+.container{
+    border: 5px solid #999;
+    padding: 20px;
+    background: white;
+    max-width: 6 0 0px;
+    margin: auto;
+}
+.images{
+    display: flex;
+    justify-content: center;
+    gap: 3.0px;
+    margin: 20px 0;
+}
+.images img{
+    height: 150px;
+}
+.footer{
+    font-style: italic;
+    margin-top: 20px;
+}
